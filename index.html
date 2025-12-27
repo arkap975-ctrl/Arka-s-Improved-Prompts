@@ -5,15 +5,40 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Arka's better prompts - Professional Prompt Engineering</title>
+  
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+  
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
   <style>
     body {
       font-family: 'Inter', sans-serif;
       background-color: #0f172a;
       color: #f1f5f9;
     }
+    /* Simple loading state before React takes over */
+    #root:empty::after {
+      content: 'Architecting Interface...';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #475569;
+      font-size: 0.875rem;
+      letter-spacing: 0.05em;
+    }
   </style>
+
+  <script>
+    // Shim process.env for environments like GitHub Pages to prevent ReferenceErrors
+    window.process = {
+      env: {
+        API_KEY: "" // Provided by host or injected at runtime
+      }
+    };
+  </script>
+
 <script type="importmap">
 {
   "imports": {
@@ -29,6 +54,12 @@
 </head>
 <body>
   <div id="root"></div>
+
+  <!-- 
+    esm.sh/run is a runtime loader that intercepts TSX imports and transpiles them 
+    on-the-fly in the browser. This allows your source code to run on static hosts like GitHub.
+  -->
+  <script type="module" src="https://esm.sh/run"></script>
   <script type="module" src="index.tsx"></script>
 </body>
 </html>
