@@ -1,6 +1,6 @@
 
 import { GoogleGenAI } from "@google/genai";
-import { PromptConfig, PromptFramework } from "../types";
+import { PromptConfig, PromptFramework } from "../types.ts";
 
 const SYSTEM_INSTRUCTION = `You are a world-class AI Prompt Engineer with deep expertise in Large Language Models (LLMs). 
 Your task is to transform simple user queries into highly professional, structured, and effective prompts.

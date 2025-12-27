@@ -1,9 +1,9 @@
 
-import React, { useState, useEffect, useCallback } from 'react';
-import { PromptConfig, PromptFramework, GeneratedPrompt } from './types';
-import { engineerPrompt } from './services/geminiService';
-import { Button } from './components/Button';
-import { HistoryItem } from './components/HistoryItem';
+import React, { useState, useEffect } from 'react';
+import { PromptConfig, PromptFramework, GeneratedPrompt } from './types.ts';
+import { engineerPrompt } from './services/geminiService.ts';
+import { Button } from './components/Button.tsx';
+import { HistoryItem } from './components/HistoryItem.tsx';
 
 const App: React.FC = () => {
   const [query, setQuery] = useState('');
