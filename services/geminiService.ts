@@ -18,7 +18,8 @@ Use professional markdown formatting. Use bolding and headers to make it readabl
 Always optimize for the best possible reasoning performance.`;
 
 export async function engineerPrompt(query: string, config: PromptConfig): Promise<string> {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+  // Use process.env.API_KEY directly as required by the @google/genai guidelines
+  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY as string });
   
   const frameworkInstruction = `Apply the ${config.framework} framework. Tone should be ${config.tone}. ${config.includeFlow ? "Ensure a 'Flow of Operation' section is included." : ""}`;
 
@@ -33,6 +34,7 @@ export async function engineerPrompt(query: string, config: PromptConfig): Promi
       },
     });
 
+    // Access .text property directly as per latest SDK guidelines
     return response.text || "Failed to generate prompt.";
   } catch (error) {
     console.error("Gemini API Error:", error);

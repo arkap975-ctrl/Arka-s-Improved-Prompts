@@ -3,17 +3,22 @@ import React from 'react';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: 'primary' | 'secondary' | 'ghost' | 'danger';
+  // Added size property to fix the 'Property size does not exist' errors in App.tsx
+  size?: 'sm' | 'md' | 'lg';
   isLoading?: boolean;
 }
 
 export const Button: React.FC<ButtonProps> = ({ 
   children, 
   variant = 'primary', 
+  // Destructure size with a default value of 'md'
+  size = 'md',
   isLoading, 
   className, 
   ...props 
 }) => {
-  const baseStyles = "px-4 py-2 rounded-lg font-medium transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed";
+  // Removed fixed padding and text size from baseStyles to allow size-based customization
+  const baseStyles = "rounded-lg font-medium transition-all duration-200 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed";
   
   const variants = {
     primary: "bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-900/20",
@@ -22,9 +27,16 @@ export const Button: React.FC<ButtonProps> = ({
     danger: "bg-red-600 hover:bg-red-700 text-white"
   };
 
+  // Define size-specific styling mappings
+  const sizes = {
+    sm: "px-3 py-1.5 text-xs",
+    md: "px-4 py-2 text-sm",
+    lg: "px-6 py-3 text-base"
+  };
+
   return (
     <button 
-      className={`${baseStyles} ${variants[variant]} ${className}`}
+      className={`${baseStyles} ${variants[variant]} ${sizes[size]} ${className}`}
       disabled={isLoading || props.disabled}
       {...props}
     >
